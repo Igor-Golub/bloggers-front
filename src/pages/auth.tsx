@@ -1,14 +1,29 @@
-import { Box, Theme } from "@mui/material";
+import { Box, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { authApi, SignInBody, SignInForm } from "../features/auth";
+import {
+  authActions,
+  authApi,
+  AuthModes,
+  authSelectors,
+  LoginForm,
+  SignInBody,
+  SignInForm,
+  SignUpBody,
+} from "../features/auth";
 import { usePageTitle } from "../shared/hooks/usePageTitle.ts";
+import { useAppDispatch, useAppSelector } from "../shared/hooks/react-redux.ts";
+import { ReactNode } from "react";
 
 const AuthPage = () => {
   usePageTitle("Auth");
 
+  const dispatch = useAppDispatch();
+  const authMode = useAppSelector(authSelectors.getAuthMode);
+
   const classes = useStyles();
 
-  const [sighIn, { isLoading }] = authApi.useSignInMutation();
+  const [sighIn, { isLoading: isLoadingSignIn }] = authApi.useSignInMutation();
+  const [sighUp, { isLoading: isLoadingSignUp }] = authApi.useSignUpMutation();
 
   const handleSighIn = async (body: SignInBody) => {
     try {
@@ -18,9 +33,53 @@ const AuthPage = () => {
     }
   };
 
+  const handleSighUp = async (body: SignUpBody) => {
+    try {
+      await sighUp(body);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const formRender: Record<AuthModes, ReactNode> = {
+    [AuthModes.Registration]: (
+      <SignInForm handleSighIn={handleSighIn} isLoading={isLoadingSignIn} />
+    ),
+    [AuthModes.Login]: (
+      <LoginForm handleSighUp={handleSighUp} isLoading={isLoadingSignUp} />
+    ),
+  };
+
+  const handleSwitchToRegistration = () => {
+    dispatch(authActions.changeAuthMode(AuthModes.Registration));
+  };
+
+  const handleSwitchToLogin = () => {
+    dispatch(authActions.changeAuthMode(AuthModes.Login));
+  };
+
+  const switchModeRender: Record<AuthModes, ReactNode> = {
+    [AuthModes.Registration]: (
+      <Typography className="notRegistered" onClick={handleSwitchToLogin}>
+        I'm already registered
+      </Typography>
+    ),
+    [AuthModes.Login]: (
+      <Typography
+        className="notRegistered"
+        onClick={handleSwitchToRegistration}
+      >
+        I'm not registered yet
+      </Typography>
+    ),
+  };
+
   return (
     <Box className={classes.page}>
-      <SignInForm handleSighIn={handleSighIn} isLoading={isLoading} />
+      <Box>
+        {formRender[authMode]}
+        {switchModeRender[authMode]}
+      </Box>
 
       <Box className="imageContainer">
         <img src="/login.jpg" style={{ width: "100%", height: "100%" }} />
@@ -36,6 +95,14 @@ const useStyles = makeStyles<Theme>(({ breakpoints }) => ({
     alignItems: "center",
     [breakpoints.down("md")]: {
       flexDirection: "column-reverse",
+    },
+
+    "& .notRegistered": {
+      cursor: "pointer",
+
+      "&:hover": {
+        opacity: "0.8",
+      },
     },
 
     "& .form": {
