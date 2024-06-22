@@ -1,6 +1,6 @@
-import Main from "./app/ui/Main.tsx";
+import Main from "./ui/Main.tsx";
 import "./App.css";
-import AuthPage from "./pages/auth.tsx";
+import AuthPage from "../pages/auth.tsx";
 
 function App() {
   return (

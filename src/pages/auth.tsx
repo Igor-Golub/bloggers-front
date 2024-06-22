@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { authApi, SignInBody, SignInForm } from "../features/auth";
 
@@ -26,11 +26,14 @@ const AuthPage = () => {
   );
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles<Theme>(({ breakpoints }) => ({
   page: {
     gap: "1rem",
     display: "flex",
     alignItems: "center",
+    [breakpoints.down("md")]: {
+      flexDirection: "column-reverse",
+    },
 
     "& .form": {
       gap: "1rem",
@@ -47,6 +50,6 @@ const useStyles = makeStyles({
       alignItems: "center",
     },
   },
-});
+}));
 
 export default AuthPage;
