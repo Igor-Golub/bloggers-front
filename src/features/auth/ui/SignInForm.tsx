@@ -1,5 +1,13 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  InputAdornment,
+  Typography,
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { InputFormField } from "../../../shared/ui";
 import { SignInBody } from "../model/api.ts";
 import { generateErrorsFieldsMessages } from "../../../shared/utils/forms";
@@ -16,6 +24,8 @@ interface Props {
 }
 
 export const SignInForm = ({ handleSighIn, isLoading }: Props) => {
+  const [isPasswordHidden, setPasswordHidden] = useState<boolean>(true);
+
   const {
     control,
     handleSubmit,
@@ -93,6 +103,22 @@ export const SignInForm = ({ handleSighIn, isLoading }: Props) => {
         control={control}
         errors={errors}
         textFieldProps={{
+          InputProps: {
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={() => {
+                    setPasswordHidden((prev) => !prev);
+                  }}
+                  edge="end"
+                >
+                  {isPasswordHidden ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          },
+          type: isPasswordHidden ? "password" : "text",
           label: "Password",
           placeholder: "Enter your password...",
           ...register("password", {
