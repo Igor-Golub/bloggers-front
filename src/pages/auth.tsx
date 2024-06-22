@@ -1,8 +1,11 @@
 import { Box, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { authApi, SignInBody, SignInForm } from "../features/auth";
+import { usePageTitle } from "../shared/hooks/usePageTitle.ts";
 
 const AuthPage = () => {
+  usePageTitle("Auth");
+
   const classes = useStyles();
 
   const [sighIn, { isLoading }] = authApi.useSignInMutation();
@@ -20,7 +23,7 @@ const AuthPage = () => {
       <SignInForm handleSighIn={handleSighIn} isLoading={isLoading} />
 
       <Box className="imageContainer">
-        <img src="/login2.jpg" style={{ width: "100%", height: "100%" }} />
+        <img src="/login.jpg" style={{ width: "100%", height: "100%" }} />
       </Box>
     </Box>
   );
