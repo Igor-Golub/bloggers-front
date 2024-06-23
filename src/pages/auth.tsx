@@ -112,7 +112,6 @@ const useStyles = makeStyles<Theme>(({ breakpoints }) => ({
 
     "& .form": {
       gap: "1rem",
-      padding: "2rem",
       display: "flex",
       minWidth: "30rem",
       flexDirection: "column",
