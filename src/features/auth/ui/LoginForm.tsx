@@ -83,6 +83,7 @@ export const LoginForm = ({ handleSighUp, isLoading }: Props) => {
               </InputAdornment>
             ),
           },
+          type: isPasswordHidden ? "password" : "text",
           label: "Password",
           placeholder: "Enter your password...",
           ...register("password", {

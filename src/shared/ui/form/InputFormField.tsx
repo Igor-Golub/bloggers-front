@@ -27,7 +27,7 @@ export const InputFormField = <FormValues extends FieldValues>({
       render={({ field }) => (
         <TextField
           {...textFieldProps}
-          error={!!errors.email}
+          error={!!errors[name]}
           {...field}
           helperText={
             errors?.[name]?.message && typeof errors[name].message === "string"

@@ -9,7 +9,6 @@ const Main = ({ children }: PropsWithChildren<{}>) => {
       {children}
     </Container>
   );
-
 };
 
 export default Main;

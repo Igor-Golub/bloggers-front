@@ -12,7 +12,14 @@ export interface SignUpBody {
 }
 
 export const authApi = baseApi.injectEndpoints({
-  endpoints: ({ mutation }) => ({
+  endpoints: ({ mutation, query }) => ({
+    me: query({
+      query: () => ({
+        url: "auth/me",
+        method: "GET",
+        headers: {},
+      }),
+    }),
     signIn: mutation({
       query: (body: SignInBody) => ({
         url: "auth/registration",

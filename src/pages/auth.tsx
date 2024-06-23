@@ -13,9 +13,12 @@ import {
 import { usePageTitle } from "../shared/hooks/usePageTitle.ts";
 import { useAppDispatch, useAppSelector } from "../shared/hooks/react-redux.ts";
 import { ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
   usePageTitle("Auth");
+
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
   const authMode = useAppSelector(authSelectors.getAuthMode);
@@ -26,19 +29,21 @@ const AuthPage = () => {
   const [sighUp, { isLoading: isLoadingSignUp }] = authApi.useSignUpMutation();
 
   const handleSighIn = async (body: SignInBody) => {
-    try {
-      await sighIn(body);
-    } catch (error) {
-      console.log(error);
-    }
+    await sighIn(body)
+      .unwrap()
+      .then(() => {
+        dispatch(authActions.changeAuthMode(AuthModes.Login));
+      })
+      .catch((error) => console.error("rejected", error));
   };
 
   const handleSighUp = async (body: SignUpBody) => {
-    try {
-      await sighUp(body);
-    } catch (error) {
-      console.log(error);
-    }
+    await sighUp(body)
+      .unwrap()
+      .then(() => {
+        navigate("/dashboard", { replace: true });
+      })
+      .catch((error) => console.error("rejected", error));
   };
 
   const formRender: Record<AuthModes, ReactNode> = {
@@ -76,12 +81,12 @@ const AuthPage = () => {
 
   return (
     <Box className={classes.page}>
-      <Box>
+      <Box className="gCentredColumnBox">
         {formRender[authMode]}
         {switchModeRender[authMode]}
       </Box>
 
-      <Box className="imageContainer">
+      <Box className="gImageContainer">
         <img src="/login.jpg" style={{ width: "100%", height: "100%" }} />
       </Box>
     </Box>
@@ -111,13 +116,6 @@ const useStyles = makeStyles<Theme>(({ breakpoints }) => ({
       display: "flex",
       minWidth: "30rem",
       flexDirection: "column",
-    },
-
-    "& .imageContainer": {
-      display: "flex",
-      minWidth: "30rem",
-      minHeight: "30rem",
-      alignItems: "center",
     },
   },
 }));

@@ -1,11 +1,11 @@
+import { RouterProvider } from "react-router-dom";
 import Main from "./ui/Main.tsx";
-import "./App.css";
-import AuthPage from "../pages/auth.tsx";
+import { router } from "./router";
 
 function App() {
   return (
     <Main>
-      <AuthPage />
+      <RouterProvider router={router} />
     </Main>
   );
 }
