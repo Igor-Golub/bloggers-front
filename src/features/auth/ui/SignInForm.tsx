@@ -1,16 +1,12 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import {
-  Box,
-  Button,
-  IconButton,
-  InputAdornment,
-  Typography,
-} from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { InputFormField } from "../../../shared/ui";
-import { SignInBody } from "../model/api.ts";
-import { generateErrorsFieldsMessages } from "../../../shared/utils/forms";
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Box, Button, IconButton, InputAdornment, Typography } from '@mui/material';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+import { InputFormField } from 'shared/ui';
+import { generateErrorsFieldsMessages } from 'shared/utils/forms';
+
+import { SignInBody } from '../model/api.ts';
 
 interface RegistrationFormValue {
   login: string;
@@ -34,9 +30,9 @@ export const SignInForm = ({ handleSighIn, isLoading }: Props) => {
     formState: { errors },
   } = useForm<RegistrationFormValue>({
     defaultValues: {
-      email: "",
-      login: "",
-      password: "",
+      email: '',
+      login: '',
+      password: '',
     },
   });
 
@@ -58,14 +54,14 @@ export const SignInForm = ({ handleSighIn, isLoading }: Props) => {
         control={control}
         errors={errors}
         textFieldProps={{
-          label: "Email",
-          type: "email",
-          placeholder: "Enter your email...",
-          ...register("email", {
-            required: "Required field",
+          label: 'Email',
+          type: 'email',
+          placeholder: 'Enter your email...',
+          ...register('email', {
+            required: 'Required field',
             pattern: {
               value: /\S+@\S+\.\S+/,
-              message: "Entered value does not match email format",
+              message: 'Entered value does not match email format',
             },
           }),
         }}
@@ -76,21 +72,21 @@ export const SignInForm = ({ handleSighIn, isLoading }: Props) => {
         control={control}
         errors={errors}
         textFieldProps={{
-          label: "Login",
-          placeholder: "Enter your email...",
-          ...register("login", {
-            required: "Required field",
+          label: 'Login',
+          placeholder: 'Enter your email...',
+          ...register('login', {
+            required: 'Required field',
             minLength: {
               value: 3,
-              message: generateErrorsFieldsMessages("minLength", {
-                field: "Login",
+              message: generateErrorsFieldsMessages('minLength', {
+                field: 'Login',
                 amount: 3,
               }),
             },
             maxLength: {
               value: 10,
-              message: generateErrorsFieldsMessages("maxLength", {
-                field: "Login",
+              message: generateErrorsFieldsMessages('maxLength', {
+                field: 'Login',
                 amount: 10,
               }),
             },
@@ -109,31 +105,30 @@ export const SignInForm = ({ handleSighIn, isLoading }: Props) => {
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={() => {
-                    setPasswordHidden((prev) => !prev);
+                    setPasswordHidden(prev => !prev);
                   }}
-                  edge="end"
-                >
+                  edge="end">
                   {isPasswordHidden ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             ),
           },
-          type: isPasswordHidden ? "password" : "text",
-          label: "Password",
-          placeholder: "Enter your password...",
-          ...register("password", {
-            required: "Required field",
+          type: isPasswordHidden ? 'password' : 'text',
+          label: 'Password',
+          placeholder: 'Enter your password...',
+          ...register('password', {
+            required: 'Required field',
             minLength: {
               value: 6,
-              message: generateErrorsFieldsMessages("minLength", {
-                field: "Password",
+              message: generateErrorsFieldsMessages('minLength', {
+                field: 'Password',
                 amount: 6,
               }),
             },
             maxLength: {
               value: 20,
-              message: generateErrorsFieldsMessages("maxLength", {
-                field: "Password",
+              message: generateErrorsFieldsMessages('maxLength', {
+                field: 'Password',
                 amount: 20,
               }),
             },
@@ -141,12 +136,7 @@ export const SignInForm = ({ handleSighIn, isLoading }: Props) => {
         }}
       />
 
-      <Button
-        size="large"
-        type="submit"
-        variant="contained"
-        disabled={isLoading}
-      >
+      <Button size="large" type="submit" variant="contained" disabled={isLoading}>
         Next
       </Button>
     </Box>

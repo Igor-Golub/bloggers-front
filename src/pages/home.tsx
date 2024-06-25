@@ -1,10 +1,10 @@
-import { Box, Button, Theme, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import { useNavigate } from "react-router-dom";
-import { usePageTitle } from "../shared/hooks";
+import { Box, Button, Theme, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { useNavigate } from 'react-router-dom';
+import { usePageTitle } from 'shared/hooks';
 
 const HomePage = () => {
-  usePageTitle("Home");
+  usePageTitle('Home');
 
   const classes = useStyles();
 
@@ -21,9 +21,8 @@ const HomePage = () => {
           size="large"
           variant="contained"
           onClick={() => {
-            navigate("/login");
-          }}
-        >
+            navigate('/login');
+          }}>
           Go to login
         </Button>
       </Box>
@@ -37,11 +36,11 @@ const HomePage = () => {
 
 const useStyles = makeStyles<Theme>(({ breakpoints }) => ({
   page: {
-    gap: "1rem",
-    display: "flex",
-    alignItems: "center",
-    [breakpoints.down("md")]: {
-      flexDirection: "column-reverse",
+    gap: '1rem',
+    display: 'flex',
+    alignItems: 'center',
+    [breakpoints.down('md')]: {
+      flexDirection: 'column-reverse',
     },
   },
 }));

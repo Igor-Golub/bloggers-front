@@ -1,4 +1,4 @@
-import { baseApi } from "../../../shared/api/baseApi.ts";
+import { baseApi } from 'shared/api/baseApi';
 
 export interface SignInBody {
   email: string;
@@ -18,16 +18,16 @@ interface LoginResponse {
 export const authApi = baseApi.injectEndpoints({
   endpoints: ({ mutation }) => ({
     signUp: mutation<LoginResponse, SignUpBody>({
-      query: (body) => ({
-        url: "auth/login",
-        method: "POST",
+      query: body => ({
+        url: 'auth/login',
+        method: 'POST',
         body,
       }),
     }),
     signIn: mutation<any, SignInBody>({
-      query: (body) => ({
-        url: "auth/registration",
-        method: "POST",
+      query: body => ({
+        url: 'auth/registration',
+        method: 'POST',
         body,
       }),
     }),

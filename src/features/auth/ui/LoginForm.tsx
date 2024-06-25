@@ -8,7 +8,7 @@ import {
   InputAdornment,
   Typography,
 } from "@mui/material";
-import { InputFormField } from "../../../shared/ui";
+import { InputFormField } from "shared/ui";
 import { SignUpBody } from "../model/api";
 
 interface LoginFormValue {

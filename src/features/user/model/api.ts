@@ -1,4 +1,4 @@
-import { baseApi } from "../../../shared/api/baseApi.ts";
+import { baseApi } from 'shared/api/baseApi.ts';
 
 export interface CreateUserBody {
   login: string;
@@ -10,8 +10,8 @@ export const userApi = baseApi.injectEndpoints({
   endpoints: ({ query }) => ({
     account: query({
       query: () => ({
-        url: "auth/me",
-        method: "GET",
+        url: 'auth/me',
+        method: 'GET',
       }),
     }),
   }),

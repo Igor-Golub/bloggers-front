@@ -1,21 +1,21 @@
-import { ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
-import { Box, Theme, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { Box, Theme, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
-  authActions,
-  authApi,
   AuthModes,
-  authSelectors,
   LoginForm,
   SignInBody,
   SignInForm,
   SignUpBody,
-} from "../features/auth";
-import { useAppDispatch, useAppSelector, usePageTitle } from "../shared/hooks";
+  authActions,
+  authApi,
+  authSelectors,
+} from 'features/auth';
+import { useAppDispatch, useAppSelector, usePageTitle } from 'shared/hooks';
 
 const AuthPage = () => {
-  usePageTitle("Auth");
+  usePageTitle('Auth');
 
   const navigate = useNavigate();
 
@@ -33,27 +33,23 @@ const AuthPage = () => {
       .then(() => {
         dispatch(authActions.changeAuthMode(AuthModes.Login));
       })
-      .catch((error) => console.error("rejected", error));
+      .catch(error => console.error('rejected', error));
   };
 
   const handleSighUp = async (body: SignUpBody) => {
     await sighUp(body)
       .unwrap()
       .then(({ accessToken }) => {
-        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem('accessToken', accessToken);
         dispatch(authActions.changeAuthStatus(true));
-        navigate("/dashboard", { replace: true });
+        navigate('/dashboard', { replace: true });
       })
-      .catch((error) => console.error("rejected", error));
+      .catch(error => console.error('rejected', error));
   };
 
   const formRender: Record<AuthModes, ReactNode> = {
-    [AuthModes.Registration]: (
-      <SignInForm handleSighIn={handleSighIn} isLoading={isLoadingSignIn} />
-    ),
-    [AuthModes.Login]: (
-      <LoginForm handleSighUp={handleSighUp} isLoading={isLoadingSignUp} />
-    ),
+    [AuthModes.Registration]: <SignInForm handleSighIn={handleSighIn} isLoading={isLoadingSignIn} />,
+    [AuthModes.Login]: <LoginForm handleSighUp={handleSighUp} isLoading={isLoadingSignUp} />,
   };
 
   const handleSwitchToRegistration = () => {
@@ -71,10 +67,7 @@ const AuthPage = () => {
       </Typography>
     ),
     [AuthModes.Login]: (
-      <Typography
-        className="notRegistered"
-        onClick={handleSwitchToRegistration}
-      >
+      <Typography className="notRegistered" onClick={handleSwitchToRegistration}>
         I'm not registered yet
       </Typography>
     ),
@@ -96,26 +89,26 @@ const AuthPage = () => {
 
 const useStyles = makeStyles<Theme>(({ breakpoints }) => ({
   page: {
-    gap: "1rem",
-    display: "flex",
-    alignItems: "center",
-    [breakpoints.down("md")]: {
-      flexDirection: "column-reverse",
+    gap: '1rem',
+    display: 'flex',
+    alignItems: 'center',
+    [breakpoints.down('md')]: {
+      flexDirection: 'column-reverse',
     },
 
-    "& .notRegistered": {
-      cursor: "pointer",
+    '& .notRegistered': {
+      cursor: 'pointer',
 
-      "&:hover": {
-        opacity: "0.8",
+      '&:hover': {
+        opacity: '0.8',
       },
     },
 
-    "& .form": {
-      gap: "1rem",
-      display: "flex",
-      minWidth: "30rem",
-      flexDirection: "column",
+    '& .form': {
+      gap: '1rem',
+      display: 'flex',
+      minWidth: '30rem',
+      flexDirection: 'column',
     },
   },
 }));

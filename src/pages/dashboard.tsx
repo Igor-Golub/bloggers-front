@@ -1,10 +1,10 @@
-import { usePageTitle } from "../shared/hooks";
-import { userApi } from "../features/user";
+import { userApi } from 'features/user';
+import { usePageTitle } from 'shared/hooks';
 
 const DashboardPage = () => {
-  usePageTitle("Dashboard");
+  usePageTitle('Dashboard');
 
-  const { data, isLoading } = userApi.useAccountQuery("");
+  const { data, isLoading } = userApi.useAccountQuery('');
 
   return <div>{isLoading ? <>Loading</> : <>{data.login}</>}</div>;
 };
