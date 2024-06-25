@@ -8,9 +8,9 @@ export interface CreateUserBody {
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: ({ query }) => ({
-    getUsersList: query({
+    account: query({
       query: () => ({
-        url: "users",
+        url: "auth/me",
         method: "GET",
       }),
     }),

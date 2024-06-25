@@ -11,25 +11,22 @@ export interface SignUpBody {
   password: string;
 }
 
+interface LoginResponse {
+  accessToken: string;
+}
+
 export const authApi = baseApi.injectEndpoints({
-  endpoints: ({ mutation, query }) => ({
-    me: query({
-      query: () => ({
-        url: "auth/me",
-        method: "GET",
-        headers: {},
-      }),
-    }),
-    signIn: mutation({
-      query: (body: SignInBody) => ({
-        url: "auth/registration",
+  endpoints: ({ mutation }) => ({
+    signUp: mutation<LoginResponse, SignUpBody>({
+      query: (body) => ({
+        url: "auth/login",
         method: "POST",
         body,
       }),
     }),
-    signUp: mutation({
-      query: (body: SignUpBody) => ({
-        url: "auth/login",
+    signIn: mutation<any, SignInBody>({
+      query: (body) => ({
+        url: "auth/registration",
         method: "POST",
         body,
       }),

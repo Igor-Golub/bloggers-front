@@ -1,7 +1,7 @@
 import { Box, Button, Theme, Typography } from "@mui/material";
-import { usePageTitle } from "../shared/hooks/usePageTitle.ts";
 import { makeStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
+import { usePageTitle } from "../shared/hooks";
 
 const HomePage = () => {
   usePageTitle("Home");
@@ -29,7 +29,7 @@ const HomePage = () => {
       </Box>
 
       <Box className="gImageContainer">
-        <img src="/contacts.webp" style={{ width: "100%", height: "100%" }} />
+        <img src="/contacts.webp" className="gFullImage" />
       </Box>
     </Box>
   );

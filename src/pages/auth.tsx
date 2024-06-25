@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import {
@@ -10,10 +12,7 @@ import {
   SignInForm,
   SignUpBody,
 } from "../features/auth";
-import { usePageTitle } from "../shared/hooks/usePageTitle.ts";
-import { useAppDispatch, useAppSelector } from "../shared/hooks/react-redux.ts";
-import { ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector, usePageTitle } from "../shared/hooks";
 
 const AuthPage = () => {
   usePageTitle("Auth");
@@ -40,7 +39,9 @@ const AuthPage = () => {
   const handleSighUp = async (body: SignUpBody) => {
     await sighUp(body)
       .unwrap()
-      .then(() => {
+      .then(({ accessToken }) => {
+        localStorage.setItem("accessToken", accessToken);
+        dispatch(authActions.changeAuthStatus(true));
         navigate("/dashboard", { replace: true });
       })
       .catch((error) => console.error("rejected", error));
@@ -87,7 +88,7 @@ const AuthPage = () => {
       </Box>
 
       <Box className="gImageContainer">
-        <img src="/login.jpg" style={{ width: "100%", height: "100%" }} />
+        <img src="/login.jpg" className="gFullImage" />
       </Box>
     </Box>
   );

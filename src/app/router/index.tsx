@@ -4,6 +4,7 @@ import DashboardPage from "../../pages/dashboard";
 import HomePage from "../../pages/home";
 import ConfirmationPage from "../../pages/confirmation";
 import RecoveryPage from "../../pages/recovery";
+import Error from "../../pages/error";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardPage />,
+    errorElement: <Error />,
   },
   {
     path: "/confirmation",
