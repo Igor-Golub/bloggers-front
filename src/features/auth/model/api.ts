@@ -1,32 +1,48 @@
 import { baseApi } from 'shared/api/baseApi';
-
-export interface SignInBody {
-  email: string;
-  login: string;
-  password: string;
-}
-
-export interface SignUpBody {
-  loginOrEmail: string;
-  password: string;
-}
-
-interface LoginResponse {
-  accessToken: string;
-}
+import { AuthEndpoints } from './endpoints.ts';
+import type { SignInBody, SignUpBody, SignUpResponse } from './types';
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: ({ mutation }) => ({
-    signUp: mutation<LoginResponse, SignUpBody>({
+    signUp: mutation<SignUpResponse, SignUpBody>({
       query: body => ({
-        url: 'auth/login',
+        url: AuthEndpoints.Login,
         method: 'POST',
         body,
       }),
     }),
     signIn: mutation<any, SignInBody>({
       query: body => ({
-        url: 'auth/registration',
+        url: AuthEndpoints.Registration,
+        method: 'POST',
+        body,
+      }),
+    }),
+
+    NewPassword: mutation({
+      query: body => ({
+        url: AuthEndpoints.NewPassword,
+        method: 'POST',
+        body,
+      }),
+    }),
+    PasswordRecovery: mutation({
+      query: body => ({
+        url: AuthEndpoints.PasswordRecovery,
+        method: 'POST',
+        body,
+      }),
+    }),
+    Confirmation: mutation({
+      query: body => ({
+        url: AuthEndpoints.Confirmation,
+        method: 'POST',
+        body,
+      }),
+    }),
+    RegistrationEmailResending: mutation({
+      query: body => ({
+        url: AuthEndpoints.RegistrationEmailResending,
         method: 'POST',
         body,
       }),
