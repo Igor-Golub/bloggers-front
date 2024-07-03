@@ -1,19 +1,20 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export enum AuthModes {
-  Registration,
   Login,
+  Registration,
 }
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: {
     isAuth: false,
+    isConfirmed: false,
     mode: AuthModes.Login,
   },
   selectors: {
-    getAuthStatus: (sliceState) => sliceState.isAuth,
-    getAuthMode: (sliceState) => sliceState.mode,
+    getAuthStatus: sliceState => sliceState.isAuth,
+    getAuthMode: sliceState => sliceState.mode,
   },
   reducers: {
     changeAuthStatus: (state, action: PayloadAction<boolean>) => {
@@ -22,11 +23,10 @@ const authSlice = createSlice({
     changeAuthMode: (state, action: PayloadAction<AuthModes>) => {
       state.mode = action.payload;
     },
+    changeConfirmMode: (state, action: PayloadAction<boolean>) => {
+      state.isConfirmed = action.payload;
+    },
   },
 });
 
-export const {
-  actions: authActions,
-  reducer: authReducer,
-  selectors: authSelectors,
-} = authSlice;
+export const { actions: authActions, reducer: authReducer, selectors: authSelectors } = authSlice;

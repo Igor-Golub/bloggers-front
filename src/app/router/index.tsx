@@ -1,31 +1,35 @@
-import { createBrowserRouter } from "react-router-dom";
-import AuthPage from "../../pages/auth";
-import DashboardPage from "../../pages/dashboard";
-import HomePage from "../../pages/home";
-import ConfirmationPage from "../../pages/confirmation";
-import RecoveryPage from "../../pages/recovery";
-import Error from "../../pages/error";
+import { createBrowserRouter } from 'react-router-dom';
+import AuthPage from '../../pages/auth';
+import ConfirmationPage from '../../pages/confirmation';
+import DashboardPage from '../../pages/dashboard';
+import Error from '../../pages/error';
+import HomePage from '../../pages/home';
+import RecoveryPage from '../../pages/recovery';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <HomePage />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <AuthPage />,
   },
   {
-    path: "/dashboard",
+    path: '/recovery',
+    element: <>recovery</>,
+  },
+  {
+    path: '/dashboard',
     element: <DashboardPage />,
     errorElement: <Error />,
   },
   {
-    path: "/confirmation",
+    path: '/confirmation',
     element: <ConfirmationPage />,
   },
   {
-    path: "/recovery",
+    path: '/recovery',
     element: <RecoveryPage />,
   },
 ]);
