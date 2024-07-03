@@ -5,9 +5,7 @@ import { BackIconBtn, InputFormField } from 'shared/ui';
 import { PasswordRecoveryBody } from '../model/types';
 
 interface RecoveryFormValue {
-  login: string;
   email: string;
-  password: string;
 }
 
 interface Props {

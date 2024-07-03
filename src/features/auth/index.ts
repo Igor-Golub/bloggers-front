@@ -3,7 +3,7 @@ export { LoginForm } from './ui/LoginForm';
 export { RecoveryForm } from './ui/RecoveryForm';
 
 export { authApi } from './model/api';
-export { authActions, authReducer, authSelectors, AuthModes } from './model/slice';
+export { authActions, authReducer, authSelectors, AuthModes, RecoveryModes } from './model/slice';
 export type {
   SignInBody,
   SignUpBody,
