@@ -14,6 +14,19 @@ body {
     justify-content: center;
 }
 
+.gStartBox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.gFlexJustifyBox {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .gCentredColumnBox {
     flex: 1;
     gap: 1rem;
@@ -34,4 +47,12 @@ body {
 .gFullImage {
     width: 100%;
     height: 100%;
+}
+
+.gHovered {
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
 }

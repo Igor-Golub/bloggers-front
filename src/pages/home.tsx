@@ -23,7 +23,7 @@ const HomePage = () => {
           onClick={() => {
             navigate('/login');
           }}>
-          Go to login
+          Start dive
         </Button>
       </Box>
 

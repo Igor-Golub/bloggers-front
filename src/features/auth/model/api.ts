@@ -1,6 +1,6 @@
 import { baseApi } from 'shared/api/baseApi';
 import { AuthEndpoints } from './endpoints.ts';
-import { ConfirmRegistrationBody, SignInBody, SignUpBody, SignUpResponse } from './types';
+import { PasswordRecoveryBody, SignInBody, SignUpBody, SignUpResponse } from './types';
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: ({ mutation }) => ({
@@ -25,7 +25,7 @@ export const authApi = baseApi.injectEndpoints({
         body,
       }),
     }),
-    passwordRecovery: mutation<void, ConfirmRegistrationBody>({
+    passwordRecovery: mutation<void, PasswordRecoveryBody>({
       query: body => ({
         url: AuthEndpoints.PasswordRecovery,
         method: 'POST',

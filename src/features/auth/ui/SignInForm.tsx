@@ -2,11 +2,9 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Box, Button, IconButton, InputAdornment, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { InputFormField } from 'shared/ui';
 import { generateErrorsFieldsMessages } from 'shared/utils/forms';
-
-import { SignInBody } from '../model/api.ts';
+import { SignInBody } from '../model/types';
 
 interface RegistrationFormValue {
   login: string;

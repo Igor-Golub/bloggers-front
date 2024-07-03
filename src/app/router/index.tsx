@@ -16,10 +16,6 @@ export const router = createBrowserRouter([
     element: <AuthPage />,
   },
   {
-    path: '/recovery',
-    element: <>recovery</>,
-  },
-  {
     path: '/dashboard',
     element: <DashboardPage />,
     errorElement: <Error />,

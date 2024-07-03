@@ -1,15 +1,9 @@
-import { useState } from "react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useForm } from "react-hook-form";
-import {
-  Box,
-  Button,
-  IconButton,
-  InputAdornment,
-  Typography,
-} from "@mui/material";
-import { InputFormField } from "shared/ui";
-import { SignUpBody } from "../model/api";
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Box, Button, IconButton, InputAdornment, Typography } from '@mui/material';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { InputFormField } from 'shared/ui';
+import { SignUpBody } from '../model/types';
 
 interface LoginFormValue {
   loginOrEmail: string;
@@ -32,8 +26,8 @@ export const LoginForm = ({ handleSighUp, isLoading }: Props) => {
     formState: { errors },
   } = useForm<LoginFormValue>({
     defaultValues: {
-      loginOrEmail: "",
-      password: "",
+      loginOrEmail: '',
+      password: '',
     },
   });
 
@@ -55,10 +49,10 @@ export const LoginForm = ({ handleSighUp, isLoading }: Props) => {
         control={control}
         errors={errors}
         textFieldProps={{
-          label: "LoginOrEmail",
-          placeholder: "Enter your login or email...",
-          ...register("loginOrEmail", {
-            required: "Required field",
+          label: 'LoginOrEmail',
+          placeholder: 'Enter your login or email...',
+          ...register('loginOrEmail', {
+            required: 'Required field',
           }),
         }}
       />
@@ -74,30 +68,24 @@ export const LoginForm = ({ handleSighUp, isLoading }: Props) => {
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={() => {
-                    setPasswordHidden((prev) => !prev);
+                    setPasswordHidden(prev => !prev);
                   }}
-                  edge="end"
-                >
+                  edge="end">
                   {isPasswordHidden ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
             ),
           },
-          type: isPasswordHidden ? "password" : "text",
-          label: "Password",
-          placeholder: "Enter your password...",
-          ...register("password", {
-            required: "Required field",
+          type: isPasswordHidden ? 'password' : 'text',
+          label: 'Password',
+          placeholder: 'Enter your password...',
+          ...register('password', {
+            required: 'Required field',
           }),
         }}
       />
 
-      <Button
-        size="large"
-        type="submit"
-        variant="contained"
-        disabled={isLoading}
-      >
+      <Button size="large" type="submit" variant="contained" disabled={isLoading}>
         Login
       </Button>
     </Box>

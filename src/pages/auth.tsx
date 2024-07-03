@@ -24,11 +24,11 @@ const AuthPage = () => {
 
   const classes = useStyles();
 
-  const [sighIn, { isLoading: isLoadingSignIn }] = authApi.useSignInMutation();
-  const [sighUp, { isLoading: isLoadingSignUp }] = authApi.useSignUpMutation();
+  const [onSighIn, { isLoading: isLoadingSignIn }] = authApi.useSignInMutation();
+  const [onSighUp, { isLoading: isLoadingSignUp }] = authApi.useSignUpMutation();
 
   const handleSighIn = async (body: SignInBody) => {
-    await sighIn(body)
+    await onSighIn(body)
       .unwrap()
       .then(() => {
         dispatch(authActions.changeAuthMode(AuthModes.Login));
@@ -38,7 +38,7 @@ const AuthPage = () => {
   };
 
   const handleSighUp = async (body: SignUpBody) => {
-    await sighUp(body)
+    await onSighUp(body)
       .unwrap()
       .then(({ accessToken }) => {
         localStorage.setItem('accessToken', accessToken);
@@ -60,16 +60,26 @@ const AuthPage = () => {
     dispatch(authActions.changeAuthMode(AuthModes.Login));
   };
 
+  const handleGoToRecovery = () => {
+    navigate('/recovery');
+  };
+
   const switchModeRender: Record<AuthModes, ReactNode> = {
     [AuthModes.Registration]: (
-      <Typography className="notRegistered" onClick={handleSwitchToLogin}>
+      <Typography className="gHovered" onClick={handleSwitchToLogin}>
         I'm already registered
       </Typography>
     ),
     [AuthModes.Login]: (
-      <Typography className="notRegistered" onClick={handleSwitchToRegistration}>
-        I'm not registered yet
-      </Typography>
+      <Box className="gFlexJustifyBox">
+        <Typography className="gHovered" onClick={handleSwitchToRegistration}>
+          I'm not registered yet
+        </Typography>
+
+        <Typography className="gHovered" onClick={handleGoToRecovery}>
+          I'm forgot my password
+        </Typography>
+      </Box>
     ),
   };
 
@@ -96,18 +106,10 @@ const useStyles = makeStyles<Theme>(({ breakpoints }) => ({
       flexDirection: 'column-reverse',
     },
 
-    '& .notRegistered': {
-      cursor: 'pointer',
-
-      '&:hover': {
-        opacity: '0.8',
-      },
-    },
-
     '& .form': {
       gap: '1rem',
       display: 'flex',
-      minWidth: '30rem',
+      minWidth: '100%',
       flexDirection: 'column',
     },
   },

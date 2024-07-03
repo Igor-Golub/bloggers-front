@@ -1,4 +1,4 @@
-import { userApi } from 'features/user';
+import { userApi } from 'src/entities/user';
 import { usePageTitle } from 'shared/hooks';
 
 const DashboardPage = () => {

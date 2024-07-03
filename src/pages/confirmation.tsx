@@ -55,21 +55,6 @@ const useStyles = makeStyles<Theme>(({ breakpoints }) => ({
     [breakpoints.down('md')]: {
       flexDirection: 'column-reverse',
     },
-
-    '& .notRegistered': {
-      cursor: 'pointer',
-
-      '&:hover': {
-        opacity: '0.8',
-      },
-    },
-
-    '& .form': {
-      gap: '1rem',
-      display: 'flex',
-      minWidth: '30rem',
-      flexDirection: 'column',
-    },
   },
 }));
 
