@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import BlogsPage from 'pages/blogsPage';
 import AuthPage from '../../pages/auth';
 import ConfirmationPage from '../../pages/confirmation';
 import DashboardPage from '../../pages/dashboard';
@@ -27,5 +28,9 @@ export const router = createBrowserRouter([
   {
     path: '/recovery',
     element: <RecoveryPage />,
+  },
+  {
+    path: '/blogs',
+    element: <BlogsPage />,
   },
 ]);

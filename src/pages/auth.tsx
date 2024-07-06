@@ -32,7 +32,7 @@ const AuthPage = () => {
       .unwrap()
       .then(() => {
         dispatch(authActions.changeAuthMode(AuthModes.Login));
-        navigate('./confirmation', { replace: true });
+        navigate('/confirmation', { replace: true });
       })
       .catch(error => console.error('rejected', error));
   };
@@ -43,6 +43,7 @@ const AuthPage = () => {
       .then(({ accessToken }) => {
         localStorage.setItem('accessToken', accessToken);
         dispatch(authActions.changeAuthStatus(true));
+        navigate('/blogs', { replace: true });
       })
       .catch(error => console.error('rejected', error));
   };
