@@ -5,6 +5,7 @@ import ConfirmationPage from '../../pages/confirmation';
 import DashboardPage from '../../pages/dashboard';
 import Error from '../../pages/error';
 import HomePage from '../../pages/home';
+import PostsPage from '../../pages/postsPage';
 import RecoveryPage from '../../pages/recovery';
 
 export const router = createBrowserRouter([
@@ -32,5 +33,9 @@ export const router = createBrowserRouter([
   {
     path: '/blogs',
     element: <BlogsPage />,
+  },
+  {
+    path: '/posts',
+    element: <PostsPage />,
   },
 ]);
