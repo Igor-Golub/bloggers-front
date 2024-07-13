@@ -2,6 +2,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { AppBar, Container, IconButton, Stack, Theme, Toolbar, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { CreateBlogBtn } from 'features/blog';
 import { userApi } from 'entities/user';
 
 export const Header = () => {
@@ -16,6 +17,8 @@ export const Header = () => {
           <Typography>B L O G S</Typography>
 
           <Stack direction="row" alignItems="center" gap={2}>
+            <CreateBlogBtn />
+
             <Stack direction="row" alignItems="center" gap={1}>
               <AccountCircleIcon />
               <Typography>{user?.login}</Typography>

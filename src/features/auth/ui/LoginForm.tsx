@@ -49,6 +49,7 @@ export const LoginForm = ({ handleSighUp, isLoading }: Props) => {
         control={control}
         errors={errors}
         textFieldProps={{
+          variant: 'filled',
           label: 'LoginOrEmail',
           placeholder: 'Enter your login or email...',
           ...register('loginOrEmail', {
@@ -78,6 +79,7 @@ export const LoginForm = ({ handleSighUp, isLoading }: Props) => {
           },
           type: isPasswordHidden ? 'password' : 'text',
           label: 'Password',
+          variant: 'filled',
           placeholder: 'Enter your password...',
           ...register('password', {
             required: 'Required field',
@@ -85,7 +87,7 @@ export const LoginForm = ({ handleSighUp, isLoading }: Props) => {
         }}
       />
 
-      <Button size="large" type="submit" variant="contained" disabled={isLoading}>
+      <Button size="large" type="submit" variant="outlined" disabled={isLoading}>
         Login
       </Button>
     </Box>

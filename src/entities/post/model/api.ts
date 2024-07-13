@@ -1,9 +1,10 @@
 import { baseApi } from 'shared/api/baseApi.ts';
 import { ListResponse } from 'shared/types';
+import { Post } from './types.ts';
 
-export const postApi = baseApi.injectEndpoints({
+export const postsApi = baseApi.injectEndpoints({
   endpoints: ({ query }) => ({
-    list: query<ListResponse<any>, void>({
+    postsList: query<ListResponse<Post>, void>({
       query: () => ({
         url: 'posts',
         method: 'GET',

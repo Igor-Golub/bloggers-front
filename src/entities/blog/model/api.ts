@@ -1,10 +1,11 @@
+import { Post } from 'entities/post';
 import { baseApi } from 'shared/api/baseApi';
 import { ListResponse } from 'shared/types';
 import { Blog, CreateBlogBody, CreatePostBody, Params, UpdateBlogBody } from './types';
 
 export const blogApi = baseApi.injectEndpoints({
   endpoints: ({ query, mutation }) => ({
-    list: query<ListResponse<Blog>, void>({
+    blogsList: query<ListResponse<Blog>, void>({
       query: () => ({
         url: 'blogs',
         method: 'GET',
@@ -36,9 +37,9 @@ export const blogApi = baseApi.injectEndpoints({
         method: 'POST',
       }),
     }),
-    getPostsOfBlog: query<unknown, string>({
+    getListPostsOfBlog: query<ListResponse<Post>, string>({
       query: id => ({
-        url: `blogs/${id}`,
+        url: `blogs/${id}/posts`,
         method: 'GET',
       }),
     }),

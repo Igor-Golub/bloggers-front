@@ -1,12 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 import BlogsPage from 'pages/blogsPage';
+import { PostPage } from 'pages/postPage.tsx';
+import { PostsPage } from 'pages/postsPage.tsx';
 import AuthPage from '../../pages/auth';
 import BlogPage from '../../pages/blogPage';
 import ConfirmationPage from '../../pages/confirmation';
 import DashboardPage from '../../pages/dashboard';
 import Error from '../../pages/error';
 import HomePage from '../../pages/home';
-import PostsPage from '../../pages/postsPage';
 import RecoveryPage from '../../pages/recovery';
 
 export const router = createBrowserRouter([
@@ -40,7 +41,11 @@ export const router = createBrowserRouter([
     element: <BlogPage />,
   },
   {
-    path: '/posts',
+    path: '/posts/:id',
     element: <PostsPage />,
+  },
+  {
+    path: '/posts/:id',
+    element: <PostPage />,
   },
 ]);

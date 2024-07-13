@@ -5,12 +5,12 @@ import { usePageTitle } from 'shared/hooks';
 const BlogsPage = () => {
   usePageTitle('Blogs');
 
-  const { data } = blogApi.useListQuery();
+  const { data } = blogApi.useBlogsListQuery();
 
   return (
     <Grid container spacing={2}>
       {data?.items.map(blog => (
-        <Grid key={blog.id} item xs={6}>
+        <Grid key={blog.id} item xs={12}>
           <BlogCard key={blog.id} blog={blog} />
         </Grid>
       ))}
