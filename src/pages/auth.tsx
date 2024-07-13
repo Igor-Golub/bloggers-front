@@ -101,7 +101,9 @@ const AuthPage = () => {
 const useStyles = makeStyles<Theme>(({ breakpoints }) => ({
   page: {
     gap: '1rem',
+    height: '90vh',
     display: 'flex',
+    overflow: 'hidden',
     alignItems: 'center',
     [breakpoints.down('md')]: {
       flexDirection: 'column-reverse',

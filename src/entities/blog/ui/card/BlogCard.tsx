@@ -10,6 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { useNavigate } from 'react-router-dom';
 import { Blog } from '../../model/types';
 
 interface Props {
@@ -18,6 +19,12 @@ interface Props {
 
 export const BlogCard = ({ blog }: Props) => {
   const classes = useStyles();
+
+  const navigate = useNavigate();
+
+  const handleReadMore = () => {
+    navigate(`/blogs/${blog.id}`);
+  };
 
   return (
     <Card className={classes.card} elevation={3}>
@@ -36,7 +43,9 @@ export const BlogCard = ({ blog }: Props) => {
       </CardContent>
 
       <CardActions>
-        <Button variant="outlined">Read more</Button>
+        <Button variant="outlined" onClick={handleReadMore}>
+          Read more
+        </Button>
       </CardActions>
     </Card>
   );

@@ -1,18 +1,27 @@
-import { Container, CssBaseline } from '@mui/material';
+import { Container, CssBaseline, Theme } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import { PropsWithChildren } from 'react';
 import { Header } from 'src/wiggets/header';
 
-const Main = ({ children }: PropsWithChildren) => {
+export const Main = ({ children }: PropsWithChildren) => {
+  const classes = useStyles();
+
   return (
     <>
       <CssBaseline />
 
       <Header />
-      <Container component="main" maxWidth="xl" sx={{ display: 'flex', marginTop: '6rem' }}>
+      <Container component="main" maxWidth="xl" className={classes.container}>
         {children}
       </Container>
     </>
   );
 };
 
-export default Main;
+const useStyles = makeStyles<Theme>({
+  container: {
+    display: 'flex',
+    marginTop: '6rem',
+    paddingBottom: '2rem',
+  },
+});
