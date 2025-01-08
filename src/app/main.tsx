@@ -1,22 +1,13 @@
-import { ThemeProvider, createTheme } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
-import App from './App.tsx';
+import { App } from './App.tsx';
 import './index.css';
-import { store } from './store';
+import { AppProvider } from './providers/AppProvider';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <ThemeProvider
-        theme={createTheme({
-          palette: {
-            mode: 'dark',
-          },
-        })}>
+    <AppProvider>
         <App />
-      </ThemeProvider>
-    </Provider>
+    </AppProvider>
   </React.StrictMode>
 );
