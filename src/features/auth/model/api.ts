@@ -46,6 +46,12 @@ export const authApi = baseApi.injectEndpoints({
         body,
       }),
     }),
+    logout: mutation<void, void>({
+      query: () => ({
+        url: AuthEndpoints.Logout,
+        method: 'POST',
+      }),
+    }),
   }),
   overrideExisting: true,
 });

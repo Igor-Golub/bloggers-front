@@ -2,6 +2,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { AppBar, Container, IconButton, Stack, Theme, Toolbar, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { authApi } from 'features/auth';
 import { CreateBlogBtn } from 'features/blog';
 import { userApi } from 'entities/user';
 
@@ -9,6 +10,15 @@ export const Header = () => {
   const classes = useStyles();
 
   const { data: user } = userApi.useAccountQuery();
+  const [logout, { isLoading }] = authApi.useLogoutMutation();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -24,7 +34,7 @@ export const Header = () => {
               <Typography>{user?.login}</Typography>
             </Stack>
 
-            <IconButton>
+            <IconButton onClick={handleLogout} disabled={isLoading}>
               <LogoutIcon />
             </IconButton>
           </Stack>
