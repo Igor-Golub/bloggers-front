@@ -1,7 +1,7 @@
 import { Button, Card, CardActions, CardContent, CardHeader, Theme, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
-import { Blog } from '../../model/types';
+import { Blog } from 'entities/blog';
 
 interface Props {
   blog: Blog;
